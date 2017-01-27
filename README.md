@@ -1,9 +1,9 @@
-# generator-NExT [![NPM version][npm-image]][npm-url]  [![Coverage percentage][coveralls-image]][coveralls-url]
+# Generator-NExT [![NPM version][npm-image]][npm-url]
 > Generator that provides a basic setup for a Node project with Express and Typescript.
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-next using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and Generator-NExT using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
@@ -23,31 +23,31 @@ Feel free to [learn more about Yeoman](http://yeoman.io/).
 ### Used frameworks, libraries and tools:
  
 #### Language:
- - [typescript](https://github.com/Microsoft/TypeScript)
+ - [Typescript](https://github.com/Microsoft/TypeScript)
  
 #### Runtime:
  - [Node](https://github.com/nodejs/node)
- - [nodemon](https://github.com/remy/nodemon)
+ - [Nodemon](https://github.com/remy/nodemon)
 
 #### Build:
- - [gulp](https://github.com/gulpjs/gulp)
+ - [Gulp](https://github.com/gulpjs/gulp)
  - ... check the gulpfile.js in generators/app/templates for all used plugins
  
 #### Web Framework:
  - [Express](https://github.com/expressjs/express)
 
 #### Logging:
- - [morgan](https://github.com/expressjs/morgan)
- - [winston](https://github.com/winstonjs/winston)
+ - [Morgan](https://github.com/expressjs/morgan)
+ - [Winston](https://github.com/winstonjs/winston)
 
 #### Test:
- - [istanbul](https://github.com/gotwarlost/istanbul)
- - [remap-istanbul](https://github.com/SitePen/remap-istanbul)
- - [mocha](https://github.com/mochajs/mocha)
+ - [Istanbul](https://github.com/gotwarlost/istanbul)
+ - [Remap-istanbul](https://github.com/SitePen/remap-istanbul)
+ - [Mocha](https://github.com/mochajs/mocha)
  
 #### Others:
- - [tslint](https://github.com/palantir/tslint)
- - [typedoc](https://github.com/TypeStrong/typedoc)
+ - [Tslint](https://github.com/palantir/tslint)
+ - [Typedoc](https://github.com/TypeStrong/typedoc)
 
 
 ## License
