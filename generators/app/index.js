@@ -24,11 +24,11 @@ class NExTGenerator extends Generator {
 
     prompting() {
 
-        var prompts = [
+        let prompts = [
             {
                 type: "input",
                 name: ROOT_DIRECTORY,
-                message: "Specify project root directory.",
+                message: "Enter root directory.",
                 default: this.options.appname
             },
             {
@@ -127,9 +127,12 @@ class NExTGenerator extends Generator {
     }
 
     end() {
-        this.log("Scaffold generated");
+        this.log("NExT scaffolding was generated");
         this.log("Below you'll find some things that are up to you:");
-        this.log(" - insert detailed information in package.json, e.g. description of project");
+        this.log(" - Insert detailed information in package.json, e.g. description of project.");
+        this.log(" - Replace the demo test functions with actual ones.");
+        this.log("\nThanks for using the NExt Generator!");
+        this.log("Feel free to star, fork and create issues on GitHub https://github.com/ommsolutions/generator-next ...");
     }
 }
 module.exports = NExTGenerator;
