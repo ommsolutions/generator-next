@@ -1,5 +1,5 @@
 # Generator-NExT [![NPM version][npm-image]][npm-url]
-> Generator that provides a basic setup for a Node project with Express and Typescript.
+> Generator that provides a basic setup for a **N**ode project with **Ex**press and **T**ypescript.
 
 ## Installation
 
@@ -13,7 +13,7 @@ npm install -g generator-next
 Then generate your new project:
 
 ```bash
-yo next
+yo next <root directory>
 ```
 
 Feel free to [learn more about Yeoman](http://yeoman.io/).
@@ -50,9 +50,14 @@ Feel free to [learn more about Yeoman](http://yeoman.io/).
  - [Typedoc](https://github.com/TypeStrong/typedoc)
 
 
+## Roadmap
+
+ Version 0.3.x:   Implement sub generator which adds [pug](https://github.com/pugjs/pug)  
+ Version 0.4.x:   Implement sub generator which adds [mongoose](https://github.com/Automattic/mongoose)  
+ Version 1.x.x:   Combine all sub generators on demand.
 ## License
 
-BSD-3-Clause © [Andreas Enenkel]()
+MIT
 
 [npm-image]: https://badge.fury.io/js/generator-next.svg
 [npm-url]: https://npmjs.org/package/generator-next
