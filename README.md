@@ -46,9 +46,12 @@ Feel free to [learn more about Yeoman](http://yeoman.io/).
  - [Mocha](https://github.com/mochajs/mocha)
  
 #### Others:
- - [Tslint](https://github.com/palantir/tslint)
- - [Typedoc](https://github.com/TypeStrong/typedoc)
+ - [Tslint](https://github.com/palantir/tslint)  
+ - [Typedoc](https://github.com/TypeStrong/typedoc)  
 
+## Changelog / Releases
+
+Check here for available [releases](https://github.com/ommsolutions/generator-next/releases).
 
 ## Roadmap
 

@@ -74,7 +74,7 @@ class NExTGenerator extends Generator {
         );
 
         this.fs.copyTpl(
-            this.templatePath(".gitignore"),
+            this.templatePath("gitignore"),
             this.destinationPath(".gitignore")
         );
 

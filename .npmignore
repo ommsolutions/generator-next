@@ -1,5 +1,5 @@
-node_modules
 .idea
-test
 .editorconfig
 gulpfile.js
+node_modules
+test
