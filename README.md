@@ -1,5 +1,8 @@
-# Generator-NExT [![NPM version][npm-image]][npm-url]
+# Generator-NExT 
+[![NPM version][npm-image]][npm-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Build Status][travis-image]][travis-url]
 > Generator that provides a basic setup for a **N**ode project with **Ex**press and **T**ypescript.
+
+![alt tag](assets/generator-next.gif)
 
 ## Installation
 
@@ -55,9 +58,12 @@ Check here for available [releases](https://github.com/ommsolutions/generator-ne
 
 ## Roadmap
 
- Version 0.3.x:   Implement sub generator which adds [pug](https://github.com/pugjs/pug)  
- Version 0.4.x:   Implement sub generator which adds [mongoose](https://github.com/Automattic/mongoose)  
- Version 1.x.x:   Combine all sub generators on demand.  
+ Version 0.3.x:   Add test coverage for generator with travis and coveralls  
+ Version 0.4.x:   Implement sub generator which adds [typedoc](https://github.com/TypeStrong/typedoc)  
+ Version 0.5.x:   Implement sub generator which adds [rxjs](https://github.com/Reactive-Extensions/RxJS)  
+ Version 0.6.x:   Implement sub generator which adds [mongoose](https://github.com/Automattic/mongoose)  
+ Version 0.5.x:   Implement sub generator which adds [pug](https://github.com/pugjs/pug)  
+ Version 1.x.x:   Combine all sub generators combined depending on the user's responses.
  
 ## License
 
@@ -65,5 +71,7 @@ MIT
 
 [npm-image]: https://badge.fury.io/js/generator-next.svg
 [npm-url]: https://npmjs.org/package/generator-next
-[coveralls-image]: https://coveralls.io/repos/enenkel/generator-next/badge.svg
-[coveralls-url]: https://coveralls.io/r/enenkel/generator-next
+[coveralls-image]:https://coveralls.io/repos/github/ommsolutions/generator-next/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/ommsolutions/generator-next?branch=master
+[travis-image]:https://travis-ci.org/ommsolutions/generator-next.svg?branch=master
+[travis-url]:https://travis-ci.org/ommsolutions/generator-next?branch=master

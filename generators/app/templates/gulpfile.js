@@ -1,15 +1,15 @@
-var gulp = require("gulp");
-var sourcemaps = require("gulp-sourcemaps");
-var typescript = require("gulp-typescript");
-var nodemon = require("gulp-nodemon");
-var tslint = require("gulp-tslint");
-var runSequence = require("run-sequence");
-var rimraf = require("rimraf");
-var typedoc = require("gulp-typedoc");
-var mocha = require("gulp-mocha");
-var istanbul = require("gulp-istanbul");
-var plumber = require("gulp-plumber");
-var remapIstanbul = require("remap-istanbul/lib/gulpRemapIstanbul");
+let gulp = require("gulp");
+let sourcemaps = require("gulp-sourcemaps");
+let typescript = require("gulp-typescript");
+let nodemon = require("gulp-nodemon");
+let tslint = require("gulp-tslint");
+let runSequence = require("run-sequence");
+let rimraf = require("rimraf");
+let typedoc = require("gulp-typedoc");
+let mocha = require("gulp-mocha");
+let istanbul = require("gulp-istanbul");
+let plumber = require("gulp-plumber");
+let remapIstanbul = require("remap-istanbul/lib/gulpRemapIstanbul");
 
 const CLEAN_BUILD = "clean:build";
 const CLEAN_COVERAGE = "clean:coverage";
@@ -91,7 +91,7 @@ gulp.task(PRETEST, function() {
 
 // Run the tests via mocha and generate a istanbul json report.
 gulp.task(RUN_TESTS, function(callback) {
-    var mochaError;
+    let mochaError;
     gulp.src(JS_TEST_GLOB)
         .pipe(plumber())
         .pipe(mocha({reporter: "spec"}))
