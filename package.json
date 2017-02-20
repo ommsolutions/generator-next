@@ -1,6 +1,6 @@
 {
   "name": "generator-next",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Generator that provides a basic setup for a Node project with Express and Typescript.",
   "homepage": "https://github.com/ommsolutions/generator-next",
   "author": {

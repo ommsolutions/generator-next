@@ -16,8 +16,11 @@ npm install -g generator-next
 Then generate your new project:
 
 ```bash
-yo next <root directory>
+yo next <project-name>
 ```
+
+All files will be created inside the directory ```./<project-name>``` (relative to your current position).
+
 
 Feel free to [learn more about Yeoman](http://yeoman.io/).
 
@@ -64,6 +67,10 @@ Check here for available [releases](https://github.com/ommsolutions/generator-ne
  Version 0.6.x:   Implement sub generator which adds [mongoose](https://github.com/Automattic/mongoose)  
  Version 0.5.x:   Implement sub generator which adds [pug](https://github.com/pugjs/pug)  
  Version 1.x.x:   Combine all sub generators combined depending on the user's responses.
+ 
+ In discussion:
+  - Add build task to generate windows executable  
+  - Add generator (option) which creates systemd init scripts to run server as service on *nix distributions
  
 ## License
 

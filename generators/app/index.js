@@ -2,6 +2,7 @@
 const Generator = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
+const path = require("path");
 
 const ROOT_DIRECTORY = "project-root";
 const APP_NAME = "appname";
@@ -20,17 +21,12 @@ class NExTGenerator extends Generator {
         this.log(yosay(
             "Welcome to the " + chalk.red("NExT") + " generator!"
         ));
+        this.destinationRoot(this.options.appname);
+        this.log("All files will be generated in the folder: \"" + this.destinationRoot() + "\"");
     }
 
     prompting() {
-
         let prompts = [
-            {
-                type: "input",
-                name: ROOT_DIRECTORY,
-                message: "Enter root directory.",
-                default: this.options.appname
-            },
             {
                 type: "input",
                 name: USER,
@@ -49,15 +45,14 @@ class NExTGenerator extends Generator {
             }];
 
         return this.prompt(prompts)
-            .then(function(props) {
-                this.props = props;
+            .then(function(responses) {
+                this.responses = responses;
             }.bind(this));
     }
 
     configuring() {
         this.log("Configuring ...");
-        this.destinationRoot(this.props[ROOT_DIRECTORY]);
-        this.config.set(this.props);
+        this.config.set(this.responses);
         this.config.set(APP_NAME, this.options.appname);
     }
 

@@ -3,7 +3,8 @@ const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
 const fs = require("fs-extra");
-const TEMP_DIR = path.join(__dirname, "temp");
+const APPNAME = "temp";
+const TEMP_DIR = path.join(__dirname, APPNAME);
 
 /**
  * Test suite for the whole project
@@ -16,7 +17,6 @@ describe("-- generator-next --", function () {
     describe("-> generator-next:default", function () {
 
         let defaultPrompts = {
-            "project-root": TEMP_DIR,
             "user": "John Doe",
             "email": "john.doe@testmail.com"
         };
@@ -30,7 +30,7 @@ describe("-- generator-next --", function () {
         function generateNExT(mockedPrompts) {
             return helpers.run(require.resolve("../generators/app"), false)
                 .inDir(TEMP_DIR)
-                .withArguments(["temp"])
+                .withArguments([APPNAME])
                 .withPrompts(mockedPrompts)
                 .withOptions({"skipInstall": true});
         }

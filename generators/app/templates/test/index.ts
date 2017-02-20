@@ -2,8 +2,9 @@ import {expect} from "chai";
 import {addTwo} from "../src/test";
 
 describe("Testing demo function", () => {
-    it("Should echo input", () => {
+    it("Should add two to input", () => {
         let input: number = 5;
-        expect(addTwo(input)).to.eq(input + 2);
+        let result = addTwo(input);
+        expect(result).to.eq(input + 2);
     });
 });

@@ -1,3 +1,4 @@
+"use strict";
 let gulp = require("gulp");
 let sourcemaps = require("gulp-sourcemaps");
 let typescript = require("gulp-typescript");
