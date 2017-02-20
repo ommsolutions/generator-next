@@ -3,18 +3,18 @@ const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
 const fs = require("fs-extra");
-const APPNAME = "temp";
-const TEMP_DIR = path.join(__dirname, APPNAME);
+const APP_NAME = "my-app";
+const TEMP_DIR = path.join(__dirname, "temp");
 
 /**
  * Test suite for the whole project
  */
-describe("-- generator-next --", function () {
+describe("-- generator-next --", function() {
 
     /**
      * Test suite for the default generator with some mocked prompt responses.
      */
-    describe("-> generator-next:default", function () {
+    describe("-> generator-next:default", function() {
 
         let defaultPrompts = {
             "user": "John Doe",
@@ -30,38 +30,28 @@ describe("-- generator-next --", function () {
         function generateNExT(mockedPrompts) {
             return helpers.run(require.resolve("../generators/app"), false)
                 .inDir(TEMP_DIR)
-                .withArguments([APPNAME])
+                .withArguments([APP_NAME])
                 .withPrompts(mockedPrompts)
                 .withOptions({"skipInstall": true});
         }
 
         /**
-         * Clear the contents of the test/temp directory
+         * Clear the contents of the test/temp/my-app directory
          */
-        function cleanUp() {
-            try {
-                fs.emptyDirSync(TEMP_DIR);
-            } catch (e) {
-                console.log("error", e);
-                process.exit(1);
-            }
+        function cleanUp(callback) {
+            fs.emptyDir(path.join(TEMP_DIR, APP_NAME), callback);
         }
 
-        /**
-         * Sets mocha timeout for each test to 15 seconds.
-         */
-        beforeEach(function () {
-            this.timeout(15000);
-        });
-
-        afterEach(function () {
-            cleanUp();
+        afterEach(function(done) {
+            cleanUp(done);
         });
 
         /**
          * Checks if all files were generated.
          */
-        describe("Checking file generation", function () {
+        describe("Checking file generation", function() {
+
+            this.timeout(5000);
 
             /**
              * Execute generator and assert that the provided file was generated
@@ -69,7 +59,7 @@ describe("-- generator-next --", function () {
              * @returns {Promise} Resolves if file was found, otherwise rejects with stack trace.
              */
             function wrapAssertFile(relFilePath) {
-                return generateNExT(defaultPrompts).then((dir) => assert.file(path.join(dir, relFilePath)));
+                return generateNExT(defaultPrompts).then((dir) => assert.file(path.join(dir, APP_NAME, relFilePath)));
             }
 
             it("should have generated package.json", () => wrapAssertFile("package.json"));
@@ -86,7 +76,9 @@ describe("-- generator-next --", function () {
         /**
          * Checks if the files' contents are correct.
          */
-        describe("Checking file content", function () {
+        describe("Checking file content", function() {
+
+            this.timeout(5000);
 
             /**
              * Assert some regex content for the file at the provided relative path
@@ -96,7 +88,7 @@ describe("-- generator-next --", function () {
              */
             function wrapAssertFileContent(relFilePath, regexToExpect) {
                 return generateNExT(defaultPrompts).then((dir) =>
-                    assert.fileContent(path.join(dir, relFilePath), regexToExpect));
+                    assert.fileContent(path.join(dir, APP_NAME, relFilePath), regexToExpect));
             }
 
             it("should have set author name", () =>
