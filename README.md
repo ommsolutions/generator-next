@@ -59,13 +59,22 @@ Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 Check here for available [releases](https://github.com/ommsolutions/generator-next/releases).
 
+**Release strategy**  
+For versions 0.x.x, additional features and best practices will be added to the extended sub-generator.
+```bash
+yo next:extended <project-name>
+```
+However, they will all be included in the resulting schaffolding, so you have to delete the stuff you don't 
+want to keep manually.  
+In releases >1.x.x, all features will be selectable during the setup process and cross-compatibility will be ensured 
+for all combinations.
+
 ## Roadmap
 
- Version 0.3.x:   Add test coverage for generator with travis and coveralls  
- Version 0.4.x:   Implement sub generator which adds [typedoc](https://github.com/TypeStrong/typedoc)  
+
  Version 0.5.x:   Implement sub generator which adds [rxjs](https://github.com/Reactive-Extensions/RxJS)  
  Version 0.6.x:   Implement sub generator which adds [mongoose](https://github.com/Automattic/mongoose)  
- Version 0.5.x:   Implement sub generator which adds [pug](https://github.com/pugjs/pug)  
+ Version 0.7.x:   Implement sub generator which adds [pug](https://github.com/pugjs/pug)  
  Version 1.x.x:   Combine all sub generators combined depending on the user's responses.
  
  In discussion:
