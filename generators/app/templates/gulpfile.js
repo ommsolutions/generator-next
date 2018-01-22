@@ -23,6 +23,7 @@ const PRETEST = "pretest";
 const RUN_TESTS = "run:tests";
 const TEST = "test";
 const REMAP_COVERAGE = "remap:coverage";
+const WATCH = "watch";
 
 const TS_SRC_GLOB = "./src/**/*.ts";
 const TS_TEST_GLOB = "./test/**/*.ts";
@@ -31,6 +32,8 @@ const JS_SRC_GLOB = "./build/src/**/*.js";
 const TS_GLOB = [TS_SRC_GLOB, TS_TEST_GLOB];
 
 const tsProject = typescript.createProject("tsconfig.json");
+
+// ###### CLEAN ######
 
 // Removes the ./build directory with all its content.
 gulp.task(CLEAN_BUILD, function(callback) {
@@ -47,6 +50,8 @@ gulp.task(CLEAN_DOC, function(callback) {
     rimraf("./docs", callback);
 });
 
+// ###### LINTING ######
+
 // Checks all *.ts-files if they are conform to the rules specified in tslint.json.
 gulp.task(TSLINT, function() {
     return gulp.src(TS_GLOB)
@@ -57,9 +62,12 @@ gulp.task(TSLINT, function() {
         }));
 });
 
+// ###### COMPILE ######
+
 // Compiles all *.ts-files to *.js-files.
 gulp.task(COMPILE_TYPESCRIPT, function() {
     return gulp.src(TS_GLOB, {base: "."})
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(tsProject())
         .pipe(sourcemaps.write())
@@ -76,67 +84,62 @@ gulp.task(GENERATE_DOC, [CLEAN_DOC], function() {
     return gulp.src(TS_SRC_GLOB)
         .pipe(typedoc({
             out: "./docs",
-            readme: "readme.md",
+            readme: "README.md",
             version: true,
             module: "commonjs"
         }))
 });
 
-// Sets up the istanbul coverage
+// ###### TESTING ######
+
+// Sets up istanbul coverage
 gulp.task(PRETEST, function() {
-    gulp.src(JS_SRC_GLOB)
-        .pipe(sourcemaps.init({loadMaps: true}))
+    return gulp.src(JS_SRC_GLOB)
         .pipe(istanbul({includeUntested: true}))
-        .pipe(istanbul.hookRequire())
+        .pipe(istanbul.hookRequire());
 });
 
 // Run the tests via mocha and generate a istanbul json report.
-gulp.task(RUN_TESTS, function(callback) {
-    let mochaError;
-    gulp.src(JS_TEST_GLOB)
+gulp.task(RUN_TESTS, [PRETEST], function() {
+    return gulp.src(JS_TEST_GLOB, {read: false})
         .pipe(plumber())
         .pipe(mocha({reporter: "spec"}))
+        .pipe(istanbul.writeReports({reporters: ["json"]}))
+        .pipe(gulp.dest("./coverage"))
         .on("error", function(err) {
-            mochaError = err;
+            console.log("error: ", err);
+            process.exit(1);
         })
-        .pipe(istanbul.writeReports({
-            reporters: ["json"]
-        }))
-        .on("end", function() {
-            callback(mochaError);
-        });
 });
 
-// Remap Coverage to *.ts-files and generate html, text and json summary
+// Remap coverage to *.ts-files and generate html, text and lcov reports.
 gulp.task(REMAP_COVERAGE, function() {
     return gulp.src("./coverage/coverage-final.json")
         .pipe(remapIstanbul({
-            // basePath: ".",
             fail: true,
             reports: {
-                "html": "./coverage",
-                "json": "./coverage",
+                "html": "./coverage/html-report",
                 "text-summary": null,
                 "lcovonly": "./coverage/lcov.info"
             }
         }))
-        .pipe(gulp.dest("coverage"))
-        .on("end", function() {
-            console.log("--> For a more detailed report, check the ./coverage directory <--")
-        });
+        .on("end", () => console.log("--> For a more detailed report, check the ./coverage/html-report directory <--"));
 });
 
-// Runs all required steps for testing in sequence.
+// Runs all required steps for testing in sequence (includes rebuilding the project)
 gulp.task(TEST, function(callback) {
-    runSequence(BUILD, CLEAN_COVERAGE, PRETEST, RUN_TESTS, REMAP_COVERAGE, callback);
+    runSequence(BUILD, CLEAN_COVERAGE, RUN_TESTS, REMAP_COVERAGE, callback);
 });
+
+// ###### WATCH ######
 
 // Runs the build task and starts the server every time changes are detected.
-gulp.task("watch", [BUILD], function() {
+gulp.task(WATCH, [BUILD], function () {
     return nodemon({
         ext: "ts js json",
         script: "build/src/server.js",
         watch: ["src/*", "test/*"],
+        env: {"NODE_ENV": "development"},
         tasks: [BUILD]
     });
 });
